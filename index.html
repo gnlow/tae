@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>tae.css — classless neo-brutalist CSS</title>
+  <meta name="description" content="tae.css: a classless, neo-brutalist, squircle CSS framework with automatic flexbox layout.">
+  <link rel="stylesheet" href="./tae.css">
+</head>
+<body>
+
+  <header>
+    <a href="#top"><strong>tae.css</strong></a>
+    <nav aria-label="Primary">
+      <a href="#principles">principles</a>
+      <a href="#type">type</a>
+      <a href="#forms">forms</a>
+      <a href="#data">data</a>
+      <a href="#media">media</a>
+      <a href="#app">app</a>
+      <a href="#usage">usage</a>
+    </nav>
+  </header>
+
+  <main id="top">
+
+    <header>
+      <hgroup>
+        <h1>tae.css</h1>
+        <p>Classless, neo-brutalist CSS for everything from a markdown dump to a Discord-sized web app. Write semantic HTML. Get layout.</p>
+      </hgroup>
+      <menu>
+        <li><a role="button" href="#usage" data-primary>Get started</a></li>
+        <li><a role="button" href="#app">See an app</a></li>
+        <li><a role="button" href="#media">Canvas &amp; SVG</a></li>
+      </menu>
+    </header>
+
+    <section id="principles">
+      <h2>Principles</h2>
+
+      <article>
+        <h3>Classless</h3>
+        <p>Elements are the API. <code>&lt;article&gt;</code> is a card, <code>&lt;menu&gt;</code> is a toolbar, <code>&lt;aside&gt;</code> is a panel. State comes from ARIA, not class names.</p>
+      </article>
+
+      <article>
+        <h3>Automatic flex</h3>
+        <p>Every container is a column flex box, so <code>gap</code> replaces margin collapsing. Cards collect into a grid on their own, and rows — <code>nav</code>, <code>menu</code>, button groups — are decided by <code>:has()</code>, not by you.</p>
+      </article>
+
+      <article>
+        <h3>Neo-brutal</h3>
+        <p>Hard borders, hard offset shadows, inverted hover, and a press-down active state. All borders and paddings are small.</p>
+      </article>
+
+      <article>
+        <h3>Squircles</h3>
+        <p>Never a plain round. Only controls and cards get <code>corner-shape: squircle</code>. Tables, quotes, and images stay sharp. Browsers without support fall back to a small plain radius.</p>
+      </article>
+
+      <article>
+        <h3>Two colors</h3>
+        <p>Swamp paints, everything else is an <code>oklab</code> mix. The nine accents are text-only — never a background.</p>
+        <ul>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect width="14" height="14" style="fill:var(--snowy)"/></svg> <code>--snowy</code> #c1cebf</li>
+          <li><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect width="14" height="14" style="fill:var(--swamp)" stroke="currentColor" stroke-width="2"/></svg> <code>--swamp</code> #1f311d</li>
+        </ul>
+      </article>
+
+      <article>
+        <h3>App-ready</h3>
+        <p>Sidebars, inspectors, dialogs, toolbars, switches, and a full-height chat or canvas surface. <code>&lt;svg&gt;</code> and <code>&lt;canvas&gt;</code> size themselves.</p>
+      </article>
+    </section>
+
+    <section id="type">
+      <h2>Typography</h2>
+
+      <section>
+        <article>
+          <h1>Heading 1</h1>
+          <h2>Heading 2</h2>
+          <h3>Heading 3</h3>
+          <h4>Heading 4</h4>
+          <h5>Heading 5</h5>
+          <h6>Heading 6</h6>
+          <p>One flex <code>gap</code> spaces every block. Headings add a single extra beat <em>above</em> and nothing below, so a heading always reads as belonging to what follows. Paragraphs carry no margins at all.</p>
+          <h3>A heading after content</h3>
+          <p>No heading carries padding, except <code>h2</code>, which has a rule under it. <code>h1</code> gets a short lemon bar.</p>
+        </article>
+      </section>
+
+      <section>
+        <article>
+          <h3>Inline</h3>
+          <p>A <a href="#type">link</a>, <strong>strong</strong>, <em>em</em>, <mark>mark</mark>, <del>del</del>, <code>code</code>, <kbd>Ctrl</kbd> + <kbd>K</kbd>, H<sub>2</sub>O, E = mc<sup>2</sup>, and <abbr title="Cascading Style Sheets">CSS</abbr>.</p>
+          <blockquote>
+            <p>Flex items don't collapse margins, so the gap owns the rhythm and headings only lean on it.</p>
+            <footer>— the author</footer>
+          </blockquote>
+        </article>
+
+        <article>
+          <h3>Lists</h3>
+          <ul>
+            <li>Unordered
+              <ul><li>nested item</li><li>another</li></ul>
+            </li>
+            <li>Still compact</li>
+          </ul>
+          <ol>
+            <li>Ordered</li>
+            <li>Also ordered</li>
+            <li>A third item, to check the hang indent</li>
+          </ol>
+          <dl>
+            <dt>Term</dt>
+            <dd>Definition, dimmed.</dd>
+            <dt>Another</dt>
+            <dd>And its definition.</dd>
+          </dl>
+        </article>
+
+        <article>
+          <h3>Disclosure</h3>
+          <details open>
+            <summary>What about margins?</summary>
+            <p>Handled by <code>gap</code> plus heading margins. <code>::details-content</code> is a flex column too.</p>
+          </details>
+          <details>
+            <summary>Does it need JavaScript?</summary>
+            <p>No. This page's script only powers the demos.</p>
+          </details>
+        </article>
+      </section>
+    </section>
+
+    <section id="forms">
+      <h2>Forms &amp; buttons</h2>
+
+      <form>
+        <fieldset>
+          <legend>Profile</legend>
+          <label>Handle <input type="text" placeholder="tae" required></label>
+          <label>Email <input type="email" placeholder="you@swamp.dev"></label>
+          <label>Role
+            <select>
+              <option>Player</option>
+              <option>Moderator</option>
+              <option>Admin</option>
+            </select>
+          </label>
+          <label>Volume <input type="range" min="0" max="100" value="40"></label>
+          <label>Bio <textarea rows="3" placeholder="Say something…"></textarea></label>
+        </fieldset>
+
+        <fieldset>
+          <legend>Preferences</legend>
+          <label><input type="checkbox" checked> Notifications</label>
+          <label><input type="checkbox" role="switch" checked> Sound</label>
+          <label><input type="radio" name="shape" checked> Squircle</label>
+          <label><input type="radio" name="shape"> Square</label>
+          <label>Avatar <input type="file"></label>
+          <label>Accent <input type="color" value="#c1cebf"></label>
+          <label>Loading <progress value="62" max="100"></progress></label>
+          <label>Health <meter value="0.7" min="0" max="1"></meter></label>
+        </fieldset>
+
+        <menu>
+          <li><button type="submit">Save</button></li>
+          <li><button type="reset">Reset</button></li>
+          <li><button type="button" aria-pressed="false">Toggle</button></li>
+          <li><button type="button" disabled>Disabled</button></li>
+          <li>
+            <button type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M12 4v16M4 12h16"/></svg>
+              New
+            </button>
+          </li>
+          <li>
+            <button type="button" aria-label="Menu">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+            </button>
+          </li>
+          <li><button type="button" id="open-dialog">Open dialog</button></li>
+        </menu>
+      </form>
+
+      <dialog id="dlg">
+        <h3>Hard shadow, soft corners</h3>
+        <p>A native <code>&lt;dialog&gt;</code>, styled with no extra markup. The page behind stops scrolling thanks to <code>html:has(dialog:modal)</code>.</p>
+        <form method="dialog">
+          <menu><li><button data-primary>Close</button></li></menu>
+        </form>
+      </dialog>
+    </section>
+
+    <section id="data">
+      <h2>Data &amp; code</h2>
+
+      <table>
+        <caption>Design tokens. Override on <code>:root</code>.</caption>
+        <thead>
+          <tr><th>Token</th><th>Default</th><th>Use</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>--swamp</code></td><td>#1f311d</td><td>the only flat background</td></tr>
+          <tr><td><code>--snowy</code></td><td>#c1cebf</td><td>foreground; mixes make every surface</td></tr>
+          <tr><td><code>--shado</code></td><td>#778375</td><td>borders and hard shadows only</td></tr>
+          <tr><td><code>--bw</code></td><td>2px</td><td>border width</td></tr>
+          <tr><td><code>--flow</code></td><td>.8rem</td><td>flex gap = vertical rhythm</td></tr>
+          <tr><td><code>--shadow</code></td><td>3px 3px 0</td><td>hard offset shadow</td></tr>
+          <tr><td><code>--r</code> / <code>--r-sm</code></td><td>12px / 7px</td><td>squircle radii</td></tr>
+          <tr><td><code>--max</code></td><td>66rem</td><td>max page width</td></tr>
+        </tbody>
+      </table>
+
+      <pre><code>:root {
+  --swamp: #1f311d;
+  --snowy: #c1cebf;
+  --flow: 1rem;
+  --max: 72rem;
+}</code></pre>
+    </section>
+
+    <section id="media">
+      <h2>SVG &amp; canvas</h2>
+
+      <article>
+        <h3>SVG</h3>
+        <figure>
+          <svg viewBox="0 0 240 140" role="img" aria-labelledby="svg-t">
+            <title id="svg-t">A card with a hard offset shadow</title>
+            <rect x="46" y="36" width="120" height="84" style="fill:var(--shado)"/>
+            <rect x="36" y="26" width="120" height="84" style="fill:var(--bg)" stroke="currentColor" stroke-width="3"/>
+            <path d="M52 56h72M52 74h48M52 92h60" fill="none" stroke="currentColor" stroke-width="3"/>
+            <text x="176" y="62" font-size="14" font-weight="700" style="fill:var(--lemon)">inline</text>
+            <text x="176" y="80" font-size="14" style="fill:var(--snowy)">svg</text>
+          </svg>
+          <figcaption>Inherits color, scales with its container, and icons inside buttons without a size become 1em.</figcaption>
+        </figure>
+      </article>
+
+      <article>
+        <h3>Canvas</h3>
+        <canvas id="game" tabindex="0" aria-label="Click the squares to catch them. Score is shown below."></canvas>
+        <menu>
+          <li><button type="button" id="pause" aria-pressed="false">Pause</button></li>
+          <li><button type="button" id="reset">Reset</button></li>
+          <li>Score: <output id="score">0</output></li>
+        </menu>
+        <small>Without <code>width</code>/<code>height</code> attributes a canvas fills its container at 16:9. The script sizes the backing store with <code>ResizeObserver</code> and <code>devicePixelRatio</code>.</small>
+      </article>
+    </section>
+
+    <section id="app">
+      <h2>App layout</h2>
+      <p>A sidebar, a content column, and an inspector. It's an <code>&lt;aside&gt;</code> inside a <code>&lt;div&gt;</code> and nothing else.</p>
+
+      <div>
+        <aside aria-label="Channels">
+          <nav>
+            <h6>Channels</h6>
+            <ul>
+              <li><a href="#" aria-current="page"># general</a></li>
+              <li><a href="#"># design</a></li>
+              <li><a href="#"># dev</a></li>
+            </ul>
+            <h6>People</h6>
+            <ul>
+              <li><a href="#">mira</a></li>
+              <li><a href="#">oak</a></li>
+              <li><a href="#">fen</a></li>
+            </ul>
+          </nav>
+        </aside>
+
+        <section aria-label="Chat">
+          <h3># general</h3>
+          <p><strong>mira</strong> <small>10:02</small><br>ship the squircles?</p>
+          <p><strong>oak</strong> <small>10:03</small><br>only where they count.</p>
+          <p><strong>fen</strong> <small>10:05</small><br>the grid is subtle enough. nice.</p>
+          <form id="chat">
+            <input type="text" placeholder="Message #general" aria-label="Message">
+            <button type="submit">Send</button>
+          </form>
+        </section>
+
+        <aside aria-label="Inspector">
+          <h6>Inspector</h6>
+          <label>Width <input type="number" value="120"></label>
+          <label>Height <input type="number" value="80"></label>
+          <label>Fill <input type="color" value="#c1cebf"></label>
+          <label>Opacity <input type="range" min="0" max="100" value="80"></label>
+          <label><input type="checkbox" role="switch"> Clip content</label>
+        </aside>
+      </div>
+    </section>
+
+    <section id="usage">
+      <h2>Usage</h2>
+      <pre><code>&lt;link rel="stylesheet" href="./tae.css"&gt;</code></pre>
+
+      <h3>Automatic layout</h3>
+      <table>
+        <thead><tr><th>Element</th><th>Behavior</th></tr></thead>
+        <tbody>
+          <tr><td><code>main section article aside div form fieldset figure dl blockquote</code></td><td>column flex box, <code>--flow</code> gap</td></tr>
+          <tr><td><code>header</code> + <code>nav</code></td><td>bar: brand left, nav right</td></tr>
+          <tr><td><code>nav</code>, <code>nav ul</code>, any list of bare links</td><td>wrapping row, no markers</td></tr>
+          <tr><td><code>ul</code> / <code>ol</code></td><td>plain block list, hanging marker, <code>li + li</code> spacing</td></tr>
+          <tr><td><code>section</code> holding 2+ <code>article</code></td><td>auto card grid, <code>minmax(15rem, 1fr)</code></td></tr>
+          <tr><td><code>article</code> / <code>aside</code> / <code>figure</code></td><td>card / tinted panel / frame</td></tr>
+          <tr><td><code>p</code> holding two sibling buttons</td><td>button row</td></tr>
+          <tr><td><code>label</code> wrapping a checkbox or radio</td><td>inline pair</td></tr>
+          <tr><td><code>form</code> holding an input then a button</td><td>composer row</td></tr>
+          <tr><td><code>div</code> holding an <code>aside</code></td><td>sidebar shell, stacks on small screens</td></tr>
+          <tr><td><code>menu</code></td><td>toolbar, use <code>&lt;li&gt;&lt;button&gt;</code></td></tr>
+        </tbody>
+      </table>
+
+      <h3>State hooks</h3>
+      <table>
+        <thead><tr><th>Hook</th><th>Effect</th></tr></thead>
+        <tbody>
+          <tr><td><code>role="button"</code></td><td>link rendered as a button</td></tr>
+          <tr><td><code>[data-primary]</code> <code>[type=submit]</code></td><td>loud lemon button; the rest are quiet</td></tr>
+          <tr><td><code>[aria-pressed=true]</code></td><td>pressed toggle, sunk into the page</td></tr>
+          <tr><td><code>[aria-current]</code></td><td>active nav link</td></tr>
+          <tr><td><code>role="switch"</code></td><td>checkbox becomes a squircle switch</td></tr>
+          <tr><td><code>disabled</code></td><td>faded, no shadow, no press</td></tr>
+          <tr><td><code>canvas[data-pixel]</code></td><td><code>image-rendering: pixelated</code></td></tr>
+          <tr><td><code>html:has(dialog:modal)</code></td><td>page behind stops scrolling</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Gotchas</h3>
+      <ul>
+        <li>Containers are <em>columns</em>, not wrapping rows. Prose belongs in <code>&lt;p&gt;</code> — loose text next to an inline tag becomes its own flex item.</li>
+        <li>Squircles need <code>corner-shape</code> (Chromium 139+). Elsewhere the radius is small and plain, by design. Nothing is pill-shaped.</li>
+        <li><code>h2</code> is the only heading with a border; <code>h1</code> is the only heading with a bar.</li>
+        <li>Put button groups in <code>&lt;menu&gt;</code> so they get their own row.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>tae.css · swamp <code>#1f311d</code> · snowy <code>#c1cebf</code> · Space Mono</p>
+  </footer>
+
+  <script>
+    const $ = (s, r = document) => r.querySelector(s);
+
+    document.addEventListener('click', (e) => {
+      const toggle = e.target.closest('button[aria-pressed]');
+      if (toggle) toggle.setAttribute('aria-pressed', toggle.getAttribute('aria-pressed') !== 'true');
+
+      const link = e.target.closest('nav a[href="#"]');
+      if (link) {
+        e.preventDefault();
+        link.closest('nav').querySelectorAll('[aria-current]').forEach((a) => a.removeAttribute('aria-current'));
+        link.setAttribute('aria-current', 'page');
+      }
+    });
+
+    document.addEventListener('submit', (e) => {
+      if (e.target.method !== 'dialog') e.preventDefault();
+    });
+
+    $('#open-dialog').addEventListener('click', () => $('#dlg').showModal());
+
+    $('#chat').addEventListener('submit', (e) => {
+      const input = $('input', e.target);
+      if (!input.value.trim()) return;
+      const p = document.createElement('p');
+      const who = document.createElement('strong');
+      const when = document.createElement('small');
+      who.textContent = 'you';
+      when.textContent = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      p.append(who, ' ', when, document.createElement('br'), input.value);
+      e.target.before(p);
+      input.value = '';
+    });
+
+    const canvas = $('#game');
+    const ctx = canvas.getContext('2d');
+    const out = $('#score');
+    const css = getComputedStyle(document.documentElement);
+    const ink = css.getPropertyValue('--snowy').trim();
+    const paper = css.getPropertyValue('--swamp').trim();
+    let w = 0, h = 0, score = 0, targets = [];
+
+    const spawn = () => {
+      const s = 16 + Math.random() * 20;
+      targets.push({
+        s,
+        x: Math.random() * Math.max(1, w - s),
+        y: Math.random() * Math.max(1, h - s),
+        vx: (Math.random() - .5) * 180,
+        vy: (Math.random() - .5) * 180,
+      });
+    };
+
+    const fit = () => {
+      const dpr = window.devicePixelRatio || 1;
+      const r = canvas.getBoundingClientRect();
+      w = r.width; h = r.height;
+      canvas.width = Math.round(w * dpr);
+      canvas.height = Math.round(h * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const reset = () => {
+      score = 0; out.value = 0; targets = [];
+      for (let i = 0; i < 5; i++) spawn();
+    };
+
+    new ResizeObserver(fit).observe(canvas);
+    fit(); reset();
+    $('#reset').addEventListener('click', reset);
+
+    canvas.addEventListener('pointerdown', (e) => {
+      const r = canvas.getBoundingClientRect();
+      const x = e.clientX - r.left, y = e.clientY - r.top;
+      const i = targets.findLastIndex((t) => x >= t.x && x <= t.x + t.s && y >= t.y && y <= t.y + t.s);
+      if (i >= 0) { targets.splice(i, 1); out.value = ++score; spawn(); }
+    });
+
+    let last = performance.now();
+    const frame = (now) => {
+      const dt = Math.min(.05, (now - last) / 1000);
+      last = now;
+      const paused = $('#pause').getAttribute('aria-pressed') === 'true';
+
+      if (!paused) {
+        for (const t of targets) {
+          t.x += t.vx * dt; t.y += t.vy * dt;
+          if (t.x < 0 || t.x + t.s > w) { t.vx *= -1; t.x = Math.min(Math.max(t.x, 0), w - t.s); }
+          if (t.y < 0 || t.y + t.s > h) { t.vy *= -1; t.y = Math.min(Math.max(t.y, 0), h - t.s); }
+        }
+      }
+
+      ctx.fillStyle = paper;
+      ctx.fillRect(0, 0, w, h);
+      ctx.fillStyle = ink;
+      for (const t of targets) {
+        ctx.globalAlpha = .35;
+        ctx.fillRect(t.x + 3, t.y + 3, t.s, t.s);
+        ctx.globalAlpha = 1;
+        ctx.fillRect(t.x, t.y, t.s, t.s);
+      }
+      if (paused) {
+        ctx.font = '700 14px "Space Mono", monospace';
+        ctx.fillText('paused', 10, 22);
+      }
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  </script>
+</body>
+</html>
